@@ -97,7 +97,11 @@ def twoSqlCheck(file_path,first_line,second_line,cols):
             if line.lower().find('delete ') != -1 or line.lower().find('update ') != -1 or line.lower().find('select ') != -1 or line.lower().find('insert ') != -1:
                
                 for col in cols:
-                    if (line.find(varia + "[" + col + "]") != -1 or line.find(varia + "['" + col + "']") != -1 or line.find(varia + "[\"" + col + "\"]") != -1) :
+                    if line.find("=") > -1 :
+                        new_line = line[line.find("="):]
+                    else:
+                        new_line = line
+                    if (new_line.find(varia + "[" + col + "]") != -1 or new_line.find(varia + "['" + col + "']") != -1 or new_line.find(varia + "[\"" + col + "\"]") != -1) :
                         rnt = line
     # print rnt
     # exit()
